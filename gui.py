@@ -203,6 +203,8 @@ def animate():
         return
 
     x, y = path[current_step]
+    px = x * CELL_SIZE + CELL_SIZE // 2
+    py = y * CELL_SIZE + CELL_SIZE // 2
     
     if current_step > 0:
         prev_x, prev_y = path[current_step - 1]
@@ -213,9 +215,19 @@ def animate():
             x,
             y
         )
-
-    px = x * CELL_SIZE + CELL_SIZE // 2
-    py = y * CELL_SIZE + CELL_SIZE // 2
+    
+    if current_step < len(path) - 1:
+        next_x, next_y = path[current_step + 1]
+        
+        preview = canvas.create_line(
+            px,
+            py,
+            next_x * CELL_SIZE + CELL_SIZE // 2,
+            next_y * CELL_SIZE + CELL_SIZE // 2,
+            dash=(5, 5),
+            width=2,
+            fill="green"
+        )
 
     canvas.coords(
         knight,
