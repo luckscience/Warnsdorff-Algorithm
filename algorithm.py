@@ -112,7 +112,7 @@ def generate_closed_tour(start_x=3, start_y=2):
     return path
 
 
-def get_knight_tour(start_x=3, start_y=2):
+def get_knight_tour(start_x=0, start_y=0):
     # Sigue intentando hasta encontrar una solución válida.
 
     while True:
