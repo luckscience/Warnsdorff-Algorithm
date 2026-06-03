@@ -1,0 +1,2 @@
+# No se requieren librerias externas para este proyecto.
+# Usa una libreria estándar de Python (Tkinter).

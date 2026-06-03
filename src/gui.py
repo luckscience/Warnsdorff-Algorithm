@@ -33,7 +33,7 @@ canvas.pack()
 # Cargar la imagen del caballo.
 
 try:
-    knight_image = tk.PhotoImage(file="knight.png")
+    knight_image = tk.PhotoImage(file="src/knight.png")
 except Exception:
     messagebox.showerror(
         "Error",
