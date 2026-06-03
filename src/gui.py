@@ -1,3 +1,4 @@
+import os
 import tkinter as tk
 from tkinter import messagebox
 from algorithm import get_knight_tour
@@ -31,9 +32,15 @@ canvas = tk.Canvas(
 canvas.pack()
 
 # Cargar la imagen del caballo.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+KNIGHT_PATH = os.path.join(
+    BASE_DIR,
+    "knight.png"
+)
 
 try:
-    knight_image = tk.PhotoImage(file="src/knight.png")
+    knight_image = tk.PhotoImage(file=KNIGHT_PATH)
 except Exception:
     messagebox.showerror(
         "Error",
