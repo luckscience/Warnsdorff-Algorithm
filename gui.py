@@ -51,6 +51,8 @@ current_step = 0
 
 number_labels = []
 
+path_lines = []
+
 # Dibujar el tablero de ajedrez con colores alternados simulando un tablero real.
 
 def draw_board():
@@ -156,10 +158,39 @@ def draw_move_number(x, y, move_number):
         py,
         text=str(move_number),
         font=("Arial", 12, "bold"),
-        fill="blue"
+        fill="#016681"
     )
 
     number_labels.append(text_id)
+    
+# Dibujar una línea entre cada movimiento del caballo para visualizar mejor el recorrido.
+def draw_path_segment(x1, y1, x2, y2):
+
+    px1 = x1 * CELL_SIZE + CELL_SIZE // 2
+    py1 = y1 * CELL_SIZE + CELL_SIZE // 2
+
+    px2 = x2 * CELL_SIZE + CELL_SIZE // 2
+    py2 = y2 * CELL_SIZE + CELL_SIZE // 2
+
+    line = canvas.create_line(
+        px1,
+        py1,
+        px2,
+        py2,
+        width=3,
+        fill="#be8dff",
+        smooth=True
+    )
+
+    path_lines.append(line)
+
+# Limpiar las líneas del recorrido anterior antes de iniciar otra simulación.
+def clear_path():
+
+    for line in path_lines:
+        canvas.delete(line)
+
+    path_lines.clear()
 
 # Animación del recorrido del caballo para mover el caballo a cada posición
 # del recorrido generado por el algoritmo.
@@ -172,6 +203,16 @@ def animate():
         return
 
     x, y = path[current_step]
+    
+    if current_step > 0:
+        prev_x, prev_y = path[current_step - 1]
+
+        draw_path_segment(
+            prev_x,
+            prev_y,
+            x,
+            y
+        )
 
     px = x * CELL_SIZE + CELL_SIZE // 2
     py = y * CELL_SIZE + CELL_SIZE // 2
@@ -213,6 +254,7 @@ def start_simulation():
         return
 
     clear_numbers()
+    clear_path()
 
     if knight:
         canvas.delete(knight)
