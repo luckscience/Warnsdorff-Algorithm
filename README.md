@@ -19,9 +19,9 @@ El proyecto calcula un recorrido cerrado sobre un tablero de ajedrez de 8x8 y mu
 ```text
 proyecto/
 ├── src/
-│   ├── algoritmo.py
-│   ├── interfaz.py
-│   └── caballo.png
+│   ├── algorithm.py
+│   ├── gui.py
+│   └── knight.png
 ├── README.md
 └── requirements.txt
 ```
